@@ -1,12 +1,12 @@
 export default function Cell({ children, index, setCells, cells, option, turn, setTurn }) {
   const handleClick = () => {
     const cellsCopy = [...cells]
-    let cellToCange = cellsCopy[index]
-    if (cellToCange === '') {
-      cellToCange = turn === option.x ? option.x : option.o
+    let targetCell = cellsCopy[index]
+    if (targetCell === null) {
+      targetCell = turn === option.x ? option.x : option.o
       setTurn((curr) => (curr === option.x ? option.o : option.x))
     }
-    cellsCopy[index] = cellToCange
+    cellsCopy[index] = targetCell
     setCells(cellsCopy)
   }
   return (
