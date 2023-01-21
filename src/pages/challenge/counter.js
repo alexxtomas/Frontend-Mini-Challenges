@@ -11,7 +11,7 @@ export default function Counter() {
       <Head title='Counter' />
       <HeaderLayout>Counter</HeaderLayout>
       <MainLayout>
-        <p className='text-5xl mt-10'>{counter}</p>
+        <p className='text-5xl '>{counter}</p>
         <div className='p-5 '>
           <button
             className='py-1 px-4 rounded text-3xl  bg-blue-500 m-2'

@@ -2,6 +2,7 @@ import Head from '@/components/Head'
 import HeaderLayout from '@/components/layouts/HeaderLayout'
 import MainLayout from '@/components/layouts/MainLayout'
 import { useMemo, useRef, useState } from 'react'
+
 export default function GuessTheNumber() {
   const [restartGame, setRestartGame] = useState(false)
   const randomNumber = useMemo(() => Number.parseInt(Math.random() * 101), [restartGame])
@@ -46,11 +47,11 @@ export default function GuessTheNumber() {
       <Head title='Guess the number' />
       <HeaderLayout>Guess the number</HeaderLayout>
       <MainLayout>
-        <label htmlFor='guess' className='mt-5 mb-5 text-xl'>
+        <label htmlFor='guess' className=' mb-5 text-xl'>
           Enter a guess between 0 to 100
         </label>
         <input
-          className='  mb-5 text-black font-medium rounded w-24 text-center'
+          className='  mb-5 text-black font-medium rounded w-24  pl-2'
           id='guess'
           type='number'
           required
