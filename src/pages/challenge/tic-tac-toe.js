@@ -10,7 +10,7 @@ const OPTION = {
 }
 
 export default function TicTacToe() {
-  const [cells, setCells] = useState(['', '', '', '', '', '', '', '', ''])
+  const [cells, setCells] = useState([null, null, null, null, null, null, null, null, null])
   const [turn, setTurn] = useState(OPTION.x)
   return (
     <>
@@ -33,12 +33,21 @@ export default function TicTacToe() {
               </Cell>
             )
           })}
-          <section className='flex w-[300px] h-[300px] justify-evenly mx-auto gap-10 mt-4 text-4xl '>
-            <div className='border w-[100px] h-[100px] text-center  '>{OPTION.x}</div>
-            <div>{OPTION.o}</div>
-            {/* {
-              Object.keys(OPTION).map()
-            } */}
+          <section className='flex w-[300px] h-[300px] justify-evenly mx-auto gap-10 mt-8 text-4xl '>
+            <div
+              className={` ${
+                turn === OPTION.x && 'bg-green-400'
+              } rounded-xl w-[100px] h-[100px] flex items-center justify-center`}
+            >
+              {OPTION.x}
+            </div>
+            <div
+              className={` ${
+                turn === OPTION.o && 'bg-green-400'
+              } rounded-xl w-[100px] h-[100px] flex items-center justify-center`}
+            >
+              {OPTION.o}
+            </div>
           </section>
         </section>
       </MainLayout>
