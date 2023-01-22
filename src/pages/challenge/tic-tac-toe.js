@@ -2,37 +2,52 @@ import Cell from '@/components/Cell'
 import Head from '@/components/Head'
 import HeaderLayout from '@/components/layouts/HeaderLayout'
 import MainLayout from '@/components/layouts/MainLayout'
+import Modal from '@/components/Modal'
 import { useEffect, useState } from 'react'
 
 const OPTION = {
-  x: 'X',
-  o: 'O'
+  X: 'X',
+  O: 'O'
 }
 
+const WIN_CONDITIONS = [
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 4, 8],
+  [2, 4, 6]
+]
+
 export default function TicTacToe() {
-  const [cells, setCells] = useState([null, null, null, null, null, null, null, null, null])
-  const [turn, setTurn] = useState(OPTION.x)
-  const [finish, setFinish] = useState(null)
+  const [board, setBoard] = useState(Array(9).fill(null))
+  const [turn, setTurn] = useState(OPTION.X)
+  const [winner, setWinner] = useState(null)
 
-  useEffect(() => {
-    if (finish === 'tie') {
-      setCells([null, null, null, null, null, null, null, null, null])
-      setTurn(OPTION.x)
-      setFinish(null)
-    }
-  }, [turn, finish])
+  const handleBoardClick = (index) => {
+    if (board[index] || winner) return
+    const newBoard = [...board]
+    newBoard[index] = turn
+    setBoard(newBoard)
 
-  const handleClick = (index) => {
-    const newCells = [...cells]
-    let targetCell = newCells[index]
-    if (targetCell === null) {
-      targetCell = turn === OPTION.x ? OPTION.x : OPTION.o
-      setTurn((curr) => (curr === OPTION.x ? OPTION.o : OPTION.x))
+    const newTurn = turn === OPTION.X ? OPTION.O : OPTION.X
+    setTurn(newTurn)
+
+    for (let combo of WIN_CONDITIONS) {
+      const [a, b, c] = combo
+      if (newBoard[a] && newBoard[a] === newBoard[b] && newBoard[a] === newBoard[c]) {
+        setWinner(OPTION[newBoard[a]])
+      }
     }
-    newCells[index] = targetCell
-    setCells(newCells)
-    const areAllCellsOccuped = newCells.every((cell) => cell !== null)
-    areAllCellsOccuped && setFinish('tie')
+    const areAllboardOccuped = newBoard.every((cell) => cell !== null)
+    areAllboardOccuped && setWinner(false)
+  }
+  const handleRestartGameClick = () => {
+    setBoard(Array(9).fill(null))
+    setTurn(OPTION.X)
+    setWinner(null)
   }
   return (
     <>
@@ -40,30 +55,31 @@ export default function TicTacToe() {
       <HeaderLayout>Tic Tac Toe</HeaderLayout>
       <MainLayout>
         <section className='grid grid-cols-3 w-[300px] h-[300px] justify-items-center'>
-          {cells.map((cellValue, index) => {
+          {board.map((cell, index) => {
             return (
-              <Cell key={index} index={index} handleClick={handleClick}>
-                {cellValue}
+              <Cell key={index} index={index} handleClick={handleBoardClick}>
+                {cell}
               </Cell>
             )
           })}
           <section className='flex w-[300px] h-[300px] justify-evenly mx-auto gap-10 mt-8 text-4xl '>
             <Cell
               styles={` ${
-                turn === OPTION.x && 'bg-green-500'
+                turn === OPTION.X && 'bg-green-500'
               } rounded-xl w-[100px] h-[100px] flex items-center justify-center`}
             >
-              {OPTION.x}
+              {OPTION.X}
             </Cell>
             <Cell
               styles={` ${
-                turn === OPTION.o && 'bg-green-500'
+                turn === OPTION.O && 'bg-green-500'
               } rounded-xl w-[100px] h-[100px] flex items-center justify-center`}
             >
-              {OPTION.o}
+              {OPTION.O}
             </Cell>
           </section>
         </section>
+        {winner !== null && <Modal winner={winner} handleClick={handleRestartGameClick} />}
       </MainLayout>
     </>
   )
