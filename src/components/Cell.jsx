@@ -1,5 +1,4 @@
 export default function Cell({ children, handleClick, index, styles }) {
-  console.log(styles)
   return (
     <div
       onClick={() => handleClick && handleClick(index)}
