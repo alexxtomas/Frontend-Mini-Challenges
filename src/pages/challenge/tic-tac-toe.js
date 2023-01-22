@@ -3,6 +3,7 @@ import HeaderLayout from '@/components/layouts/HeaderLayout'
 import MainLayout from '@/components/layouts/MainLayout'
 import Board from '@/components/tic-tac-toe/Board'
 import Cell from '@/components/tic-tac-toe/Cell'
+import GameTurns from '@/components/tic-tac-toe/GameTurns'
 import Modal from '@/components/tic-tac-toe/Modal'
 import { OPTION, WIN_CONDITIONS } from '@/constants/tic-tac-toe/index'
 import { checkEndGame, checkWinnerFrom } from '@/logic/tic-tac-toe/board'
@@ -37,22 +38,7 @@ export default function TicTacToe() {
       <HeaderLayout>Tic Tac Toe</HeaderLayout>
       <MainLayout>
         <Board cells={cells} handleCellClick={handleCellClick} />
-        <section className='flex w-[300px] h-[300px] justify-evenly mx-auto gap-10 mt-8 text-4xl '>
-          <Cell
-            styles={` ${
-              turn === OPTION.X && 'bg-green-500'
-            } rounded-xl w-[100px] h-[100px] flex items-center justify-center`}
-          >
-            {OPTION.X}
-          </Cell>
-          <Cell
-            styles={` ${
-              turn === OPTION.O && 'bg-green-500'
-            } rounded-xl w-[100px] h-[100px] flex items-center justify-center`}
-          >
-            {OPTION.O}
-          </Cell>
-        </section>
+        <GameTurns turn={turn} />
         {winner !== null && <Modal winner={winner} handleClick={handleRestartGameClick} />}
       </MainLayout>
     </>
