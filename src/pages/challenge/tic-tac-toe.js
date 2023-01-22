@@ -48,20 +48,20 @@ export default function TicTacToe() {
             )
           })}
           <section className='flex w-[300px] h-[300px] justify-evenly mx-auto gap-10 mt-8 text-4xl '>
-            <div
-              className={` ${
-                turn === OPTION.x && 'bg-green-400'
+            <Cell
+              styles={` ${
+                turn === OPTION.x && 'bg-green-500'
               } rounded-xl w-[100px] h-[100px] flex items-center justify-center`}
             >
               {OPTION.x}
-            </div>
-            <div
-              className={` ${
-                turn === OPTION.o && 'bg-green-400'
+            </Cell>
+            <Cell
+              styles={` ${
+                turn === OPTION.o && 'bg-green-500'
               } rounded-xl w-[100px] h-[100px] flex items-center justify-center`}
             >
               {OPTION.o}
-            </div>
+            </Cell>
           </section>
         </section>
       </MainLayout>
