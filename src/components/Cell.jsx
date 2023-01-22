@@ -1,8 +1,9 @@
-export default function Cell({ children, handleClick, index }) {
+export default function Cell({ children, handleClick, index, styles }) {
+  console.log(styles)
   return (
     <div
-      onClick={() => handleClick(index)}
-      className='border min-w-full h-[100px] flex items-center justify-center text-5xl cursor-pointer'
+      onClick={() => handleClick && handleClick(index)}
+      className={`border w-[100px] h-[100px] flex items-center justify-center text-5xl cursor-pointer ${styles}`}
     >
       {children}
     </div>
