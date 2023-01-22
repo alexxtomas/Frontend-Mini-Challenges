@@ -2,9 +2,8 @@ import Head from '@/components/Head'
 import HeaderLayout from '@/components/layouts/HeaderLayout'
 import MainLayout from '@/components/layouts/MainLayout'
 import Board from '@/components/tic-tac-toe/Board'
-import Cell from '@/components/tic-tac-toe/Cell'
+import EndGameModal from '@/components/tic-tac-toe/EndGameModal'
 import GameTurns from '@/components/tic-tac-toe/GameTurns'
-import Modal from '@/components/tic-tac-toe/Modal'
 import { OPTION, WIN_CONDITIONS } from '@/constants/tic-tac-toe/index'
 import { checkEndGame, checkWinnerFrom } from '@/logic/tic-tac-toe/board'
 import { useEffect, useState } from 'react'
@@ -39,7 +38,7 @@ export default function TicTacToe() {
       <MainLayout>
         <Board cells={cells} handleCellClick={handleCellClick} />
         <GameTurns turn={turn} />
-        {winner !== null && <Modal winner={winner} handleClick={handleRestartGameClick} />}
+        {winner !== null && <EndGameModal winner={winner} handleClick={handleRestartGameClick} />}
       </MainLayout>
     </>
   )
