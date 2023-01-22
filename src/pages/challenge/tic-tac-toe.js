@@ -4,6 +4,7 @@ import MainLayout from '@/components/layouts/MainLayout'
 import Cell from '@/components/tic-tac-toe/Cell'
 import Modal from '@/components/tic-tac-toe/Modal'
 import { OPTION, WIN_CONDITIONS } from '@/constants/tic-tac-toe/index'
+import { checkEndGame, checkWinnerFrom } from '@/logic/tic-tac-toe/board'
 import { useEffect, useState } from 'react'
 
 export default function TicTacToe() {
@@ -20,14 +21,9 @@ export default function TicTacToe() {
     const newTurn = turn === OPTION.X ? OPTION.O : OPTION.X
     setTurn(newTurn)
 
-    for (let combo of WIN_CONDITIONS) {
-      const [a, b, c] = combo
-      if (newBoard[a] && newBoard[a] === newBoard[b] && newBoard[a] === newBoard[c]) {
-        setWinner(OPTION[newBoard[a]])
-      }
-    }
-    const areAllboardOccuped = newBoard.every((cell) => cell !== null)
-    areAllboardOccuped && setWinner(false)
+    const newWinner = checkWinnerFrom(newBoard)
+    if (newWinner) setWinner(newWinner)
+    else if (checkEndGame(newBoard)) setWinner(false)
   }
   const handleRestartGameClick = () => {
     setBoard(Array(9).fill(null))

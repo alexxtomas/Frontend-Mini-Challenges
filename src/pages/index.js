@@ -1,7 +1,7 @@
 import Head from '@/components/Head'
 import HeaderLayout from '@/components/layouts/HeaderLayout'
 import MainLayout from '@/components/layouts/MainLayout'
-import { CHALLENGES } from '@/constants'
+import { CHALLENGES } from '@/constants/index'
 import Link from 'next/link'
 
 export default function Home() {
