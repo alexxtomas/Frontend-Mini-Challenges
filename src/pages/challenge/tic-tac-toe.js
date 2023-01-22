@@ -7,6 +7,7 @@ import GameTurns from '@/components/tic-tac-toe/GameTurns'
 import { OPTION, WIN_CONDITIONS } from '@/constants/tic-tac-toe/index'
 import { checkEndGame, checkWinnerFrom } from '@/logic/tic-tac-toe/board'
 import { resetGameStorage, saveGameToStroage } from '@/logic/tic-tac-toe/storage'
+import confetti from 'canvas-confetti'
 import { useEffect, useState } from 'react'
 
 export default function TicTacToe() {
@@ -36,6 +37,10 @@ export default function TicTacToe() {
 
     const newWinner = checkWinnerFrom(newCells)
     if (newWinner) {
+      confetti({
+        spread: 80,
+        particleCount: 200
+      })
       setWinner(newWinner)
       resetGameStorage()
     } else if (checkEndGame(newCells)) {
