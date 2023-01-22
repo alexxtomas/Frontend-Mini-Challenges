@@ -1,6 +1,6 @@
 export const OPTION = {
-  X: 'X',
-  O: 'O'
+  X: '✖️',
+  O: '⭕'
 }
 
 export const WIN_CONDITIONS = [
