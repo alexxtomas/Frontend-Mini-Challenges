@@ -3,23 +3,8 @@ import HeaderLayout from '@/components/layouts/HeaderLayout'
 import MainLayout from '@/components/layouts/MainLayout'
 import Cell from '@/components/tic-tac-toe/Cell'
 import Modal from '@/components/tic-tac-toe/Modal'
+import { OPTION, WIN_CONDITIONS } from '@/constants/tic-tac-toe/index'
 import { useEffect, useState } from 'react'
-
-const OPTION = {
-  X: 'X',
-  O: 'O'
-}
-
-const WIN_CONDITIONS = [
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 4, 8],
-  [2, 4, 6]
-]
 
 export default function TicTacToe() {
   const [board, setBoard] = useState(Array(9).fill(null))
