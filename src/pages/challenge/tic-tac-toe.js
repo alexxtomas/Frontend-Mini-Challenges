@@ -1,8 +1,8 @@
-import Cell from '@/components/Cell'
 import Head from '@/components/Head'
 import HeaderLayout from '@/components/layouts/HeaderLayout'
 import MainLayout from '@/components/layouts/MainLayout'
-import Modal from '@/components/Modal'
+import Cell from '@/components/tic-tac-toe/Cell'
+import Modal from '@/components/tic-tac-toe/Modal'
 import { useEffect, useState } from 'react'
 
 const OPTION = {
