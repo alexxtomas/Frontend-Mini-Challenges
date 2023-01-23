@@ -4,7 +4,8 @@ import MainLayout from '@/components/layouts/MainLayout'
 import Board from '@/components/tic-tac-toe/Board'
 import EndGameModal from '@/components/tic-tac-toe/EndGameModal'
 import GameTurns from '@/components/tic-tac-toe/GameTurns'
-import { OPTION, WIN_CONDITIONS } from '@/constants/tic-tac-toe/index'
+import ResetGame from '@/components/tic-tac-toe/ResetGame'
+import { OPTION } from '@/constants/tic-tac-toe/index'
 import { checkEndGame, checkWinnerFrom } from '@/logic/tic-tac-toe/board'
 import { resetGameStorage, saveGameToStroage } from '@/logic/tic-tac-toe/storage'
 import confetti from 'canvas-confetti'
@@ -60,6 +61,7 @@ export default function TicTacToe() {
       <MainLayout>
         <Board cells={cells} handleCellClick={handleCellClick} />
         <GameTurns turn={turn} />
+        <ResetGame handleClick={handleRestartGameClick} />
         {winner !== null && <EndGameModal winner={winner} handleClick={handleRestartGameClick} />}
       </MainLayout>
     </>
