@@ -15,7 +15,7 @@ export default function Home() {
             return (
               <li
                 key={name}
-                className='text-gray-200 flex items-center justify-center flex-col border py-8 px-2 rounded text-center cursor-pointer transition-colors h-14 w-30 hover:bg-green-400   hover:text-gray-800 hover:border-green-400 scale-105'
+                className='flex items-center justify-center flex-col border border-gray-500 py-8 px-2 rounded text-center cursor-pointer transition-colors h-14 w-30 hover:bg-green-400   hover:text-gray-800 hover:border-green-400 scale-105'
               >
                 <Link href={path}>{name}</Link>
               </li>
