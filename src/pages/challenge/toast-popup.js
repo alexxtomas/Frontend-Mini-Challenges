@@ -6,7 +6,7 @@ import Toast from '@/components/toast-popup/Toast'
 import { SELECTS } from '@/constants/toast-popup'
 import { useState } from 'react'
 export default function ToastPopup() {
-  const [textInput, setTextInput] = useState('This is a toast message!')
+  const [toastText, setToastText] = useState('This is a toast message!')
   const [rangeInput, setRangeInput] = useState(5)
   const [selectInputs, setSelectInputs] = useState(() => {
     let obj = {}
@@ -15,7 +15,6 @@ export default function ToastPopup() {
     })
     return obj
   })
-  console.log(selectInputs)
   const [showToast, setShowToast] = useState(false)
   const handleChange = (evt) => {
     setSelectInputs((currentValues) => ({ ...currentValues, [evt.target.name]: evt.target.value }))
@@ -38,8 +37,8 @@ export default function ToastPopup() {
           <input
             type='text'
             name='tost-message'
-            value={textInput}
-            onChange={({ target: { value } }) => setTextInput(value)}
+            value={toastText}
+            onChange={({ target: { value } }) => setToastText(value)}
             className='rounded px-3 py-1 border border-black'
           />
           <div className='flex items-center justify-center gap-2'>
@@ -66,7 +65,7 @@ export default function ToastPopup() {
           </button>
         </section>
       </MainLayout>
-      {showToast && <Toast type={selectInputs.Type} />}
+      {showToast && <Toast type={selectInputs.Type} setShowToast={setShowToast} text={toastText} />}
     </>
   )
 }
