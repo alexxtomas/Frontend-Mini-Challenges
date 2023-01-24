@@ -10,11 +10,12 @@ export default function ToastPopup() {
   const [rangeInput, setRangeInput] = useState(5)
   const [selectInputs, setSelectInputs] = useState(() => {
     let obj = {}
-    SELECTS.forEach(({ name }) => {
-      obj[name] = ''
+    SELECTS.forEach(({ name, defaultValue }) => {
+      obj[name] = defaultValue
     })
     return obj
   })
+  console.log(selectInputs)
   const [showToast, setShowToast] = useState(false)
   const handleChange = (evt) => {
     setSelectInputs((currentValues) => ({ ...currentValues, [evt.target.name]: evt.target.value }))
@@ -65,7 +66,7 @@ export default function ToastPopup() {
           </button>
         </section>
       </MainLayout>
-      {showToast && <Toast />}
+      {showToast && <Toast type={selectInputs.Type} />}
     </>
   )
 }
