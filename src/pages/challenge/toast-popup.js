@@ -7,7 +7,7 @@ import { SELECTS } from '@/constants/toast-popup'
 import { useState } from 'react'
 export default function ToastPopup() {
   const [toastText, setToastText] = useState('This is a toast message!')
-  const [rangeInput, setRangeInput] = useState(5)
+  const [toastDuration, setToastDuration] = useState(5)
   const [selectInputs, setSelectInputs] = useState(() => {
     let obj = {}
     SELECTS.forEach(({ name, defaultValue }) => {
@@ -52,8 +52,8 @@ export default function ToastPopup() {
               max='10'
               type='range'
               className=''
-              value={rangeInput}
-              onChange={({ target: { value } }) => setRangeInput(value)}
+              value={toastDuration}
+              onChange={({ target: { value } }) => setToastDuration(value)}
             />
           </div>
 
@@ -65,7 +65,16 @@ export default function ToastPopup() {
           </button>
         </section>
       </MainLayout>
-      {showToast && <Toast type={selectInputs.Type} setShowToast={setShowToast} text={toastText} />}
+      {showToast && (
+        <Toast
+          type={selectInputs.Type}
+          setShowToast={setShowToast}
+          text={toastText}
+          duration={toastDuration}
+          side={selectInputs.Side}
+          position={selectInputs.Position}
+        />
+      )}
     </>
   )
 }
